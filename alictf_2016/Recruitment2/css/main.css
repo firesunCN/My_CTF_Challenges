@@ -1,0 +1,85 @@
+.firecms {
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.uploadPanel {
+    margin-top: 40px;
+}
+
+input.btn.btn-primary {
+    margin-left: 90px;
+}
+
+input#inputProfile {
+    height: 100px;
+}
+
+.layout:after {
+    clear: both;
+    content: " ";
+    display: table;
+}
+
+.layout__aside, .layout__main {
+    float: left;
+}
+
+.layout__aside {
+    width: 200px;
+}
+
+.layout__aside--right {
+    margin-right: -210px;
+}
+
+.result-wrap {
+    padding: 10px 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.result-list a {
+    margin-right: 15px;
+}
+
+.result-list i {
+    padding-right: 5px;
+}
+
+.result-tab {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.result-tab th {
+    font-weight: normal;
+    font-size: 15px;
+    text-align: left;
+}
+
+.result-tab th,.result-tab td {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #e1e1e1;
+}
+
+.result-tab tr {
+    line-height: 35px;
+}
+
+.result-tab th.tc,.result-tab td.tc {
+    text-align: center;
+}
+
+.result-tab tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.result-tab tr:hover {
+    background: #f1f1f1;
+}
+
+.result-tab tr.even-tr {
+    background: #e9fff2;
+}

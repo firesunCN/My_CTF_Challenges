@@ -1,0 +1,47 @@
+<?php
+/**
+ * @author firesun 
+ * @website https://github.com/firesunCN
+ */
+require_once('header.php');
+
+if (!isset($_REQUEST["id"])) {
+    header("Location: index.php");
+    exit();
+}
+
+$sql = "select * from user where id=" . $_REQUEST["id"] . ";";
+
+$result = query($sql);
+if ($result) {
+    $result = $result[0];
+}
+
+if (!$result) {
+    header("Location: index.php");
+    exit();
+}
+
+?>
+        <div class="span10">
+            <div id="content">
+                <div class="page-header">
+                    <div class="layout">
+                        <aside class="layout__aside layout__aside--left">
+                            <label for="user">Username:</label><?php echo $result['username'];?><hr>
+                            <label for="email">Email:</label><?php echo $result['email'];?><br/><br><hr>
+                            <p>
+                                <label for="profile">Profile:</label><br>
+                                <div id=comment name="comment"><?php echo $result['profile'];?><br/></div>
+                            </p>    
+                        </aside>
+                        <aside class="layout__aside layout__aside--right"><img src="<?php echo $result['avatar'];?>" width="100" height="100" class="img-thumbnail" ></aside>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
