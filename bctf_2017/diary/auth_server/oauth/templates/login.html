@@ -1,0 +1,27 @@
+{% extends "framework.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>LOGIN</h2>
+        </div>
+        <h3 style="color: red">{{ msg }}</h3>
+        <form rule="form" method="post" action=".">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+
+      		  <div class="form-group">
+      		  Don't have an account? <a target="view_window" href="{% url 'register' %}">Sign up</a>
+      		  </div>
+      		  {% csrf_token %}
+            <button type="submit" class="btn btn-default">Login</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+{% endblock %}

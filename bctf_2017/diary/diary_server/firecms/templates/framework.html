@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>FireCMS</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/bootswatch.min.css">
+        <script src="/static/js/jquery.min.js"></script>
+    </head> 
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                  <a href="/" class="navbar-brand" style="font-size: 20px;">FIRECMS</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                  <ul class="nav navbar-nav">
+                      {% if request.user.is_authenticated %}
+                      <li><a href="{% url 'diary' %}" style="font-size: 14px;">Diary</a></li>
+          			      <li><a href="{% url 'survey' %}" style="font-size: 14px;">Survey</a></li>
+          			      <li><a href="{% url 'report_bugs' %}" style="font-size: 14px;">Report bugs</a></li>
+          			      <li><a href="{% url 'about' %}" style="font-size: 14px;">About</a></li>
+                      <li><a href="{% url 'logout' %}" style="font-size: 14px;">Logout</a></li>
+                      {% else %}
+                      <li><a href="{% url 'login' %}" style="font-size: 14px;">Login</a></li>
+                      {% endif %}
+                  </ul>
+              </div>
+            </div>
+        </div>
+      	<br>
+      	<br>
+        {% block content %}
+        {% endblock %}
+    </body>
+    {% block footer %}
+    {% endblock %}
+</html>

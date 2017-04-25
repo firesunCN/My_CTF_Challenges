@@ -1,0 +1,23 @@
+{% extends "framework.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>EDIT DIARY</h2>
+        </div>
+        <h3 style="color: red">{{ msg }}</h3>
+        <form rule="form" method="post" action="">
+            {{ form.as_p }}
+            <div class="form-group">
+                <label for="username">Diary</label>
+                <textarea class="form-control" id="content" name="content" rows="10" ></textarea>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default">Edit</button>
+        </form>
+    </div>
+<script charset="utf-8" src="/static/editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/static/editor/lang/en.js"></script>
+<script>
+var editor;KindEditor.ready(function(a){editor=a.create("#content",{resizeType:1,langType:"en",allowPreviewEmoticons:!1,allowImageUpload:!1,items:"fontname fontsize | forecolor hilitecolor bold italic underline removeformat | justifyleft justifycenter justifyright insertorderedlist insertunorderedlist | emoticons image link".split(" ")})});
+</script>
+{% endblock %}

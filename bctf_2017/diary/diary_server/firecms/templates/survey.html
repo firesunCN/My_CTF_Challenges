@@ -1,0 +1,32 @@
+{% extends "framework.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>SURVEY</h2>
+        </div>
+        <h3 style="color: red">{{ msg }}</h3>
+        <form rule="form" method="post" action="">
+            {{ form.as_p }}
+            <div class="form-group">
+            Finish the survey and I will give you the flag.
+            <!-- Notice: We won't check the survey until the game ends. There is no need to fuzz it. -->
+    		    </div>
+            
+            <div class="form-group">
+                <label for="username">Rate for this problem: </label>
+                <br>
+                <input type="radio" name="rate" value="1">1
+                <input type="radio" name="rate" value="2">2
+                <input type="radio" name="rate" value="3">3
+                <input type="radio" name="rate" value="4">4
+                <input type="radio" name="rate" value="5" checked>5  
+            </div>
+            <div class="form-group">
+                <label for="username">Advice or suggestions: </label>
+                <textarea class="form-control" id="suggestion" name="suggestion" rows="10" ></textarea>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+{% endblock %}

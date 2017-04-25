@@ -1,0 +1,13 @@
+{% extends "framework.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>REGISTER</h2>
+        </div>
+        <h3 style="color: red">Register success!!</h3>
+		<div id="show"></div>  
+    </div>
+<script type="text/javascript">  
+var time=3;function closeWindow(){window.setTimeout("closeWindow()",1000);if(time>0){document.getElementById("show").innerHTML="The windows will be closed in <font color=red>"+time+"</font> seconds";time--}else{window.opener=null;window.open("","_self");window.close()}}closeWindow();
+</script>
+{% endblock %}

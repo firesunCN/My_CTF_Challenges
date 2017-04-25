@@ -1,0 +1,31 @@
+{% extends "framework.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h2>REPORT BUGS</h2>
+        </div>
+        <h3 style="color: red">{{ msg|safe }}</h3>
+        <form rule="form" method="post" action="">
+            {{ form.as_p }}
+            <div class="form-group">
+            If you find any bugs, please report to us with the address.
+            </div>
+            <div class="form-group">
+                <label for="url">Url</label>
+                <input type="text" class="form-control" id="url" name="url" maxlength="200">
+            </div>
+            <div class="form-group">
+                <label for="captcha">Captcha: (substr(md5(captcha), 0, 5)="{{ captcha }}")</label>
+        		    <div>
+        		        <div id="c_button" class="btn btn-default">AutoCalc Captcha</div>
+        		    </div>
+        		    <div id="c_value" style="display: none;">{{ captcha }}</div>
+                <input type="text" class="form-control" id="captcha" name="captcha" maxlength="200">
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default">Report</button>
+        </form>
+    </div>
+<script src="/static/js/md5.min.js"></script>
+<script>$("#c_button").click(function(){var b=$("#c_value").html();if(b.match(/^[a-f0-9]{5,5}/)){for(var a=0;1E10>a;)if(a+=1,value=md5(a+""),value.startsWith(b)){$("#captcha").val(a+"");return}alert("Auto Calc Failed!")}else alert("Something Wrong!")});</script>
+{% endblock %}
