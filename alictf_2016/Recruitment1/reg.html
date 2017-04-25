@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Hello World</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="static/bootstrap.min.css" media="screen">
+        <link rel="stylesheet" href="static/bootswatch.min.css">
+        <link rel="stylesheet" href="static/main.css"/>
+    </head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    Hello World</div>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/login">Sign In</a>
+                    </li>
+                    <li>
+                        <a href="/reg">Create Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="firecms">
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% end %}
+        <form class="bs-example form-horizontal" action="" method="post" name="reg">
+            <legend>Register</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Username：</label>
+                <div class="col-lg-3">
+                    <input type="text" name="username" class="form-control" id="inputUsername">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Password：</label>
+                <div class="col-lg-3">
+                    <input type="password" name="password" class="form-control" id="inputPassword">
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="col-lg-2 control-label">Captcha：</label>
+                <div class="col-lg-3">
+                    <div  class="box" id="captcha-box"></div>    
+                </div>    
+            </div>
+                
+            <div class="form-group">
+                <div><input type="submit" name="submit" class="btn btn-primary" value="submit"/></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="static/jquery.min.js"></script>
+<script src="static/get.js"></script>
+<script src="static/captcha.php"></script>
