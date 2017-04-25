@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>FirePaint</title>    
+        <!-- <link rel="hint" href="/flag.php"/> -->
+        <link rel="stylesheet" href="css/paint.css"/>
+    </head>
+    <body>
+        <header id="header">FirePaint</header>
+        <section id="content">
+            <ul id="tool">
+                <li>
+                    <h3>Image</h3>
+                    <hr />
+                    <ul id="image">
+                        <li id="insertimg">
+                            <button style="padding: 0px;" class="btn btn-default" data-toggle="modal" data-target="#insertIMGModal">Insert image</button>
+                        </li>
+                        <li id="saveimg">
+                            <form id="myform" action="down.php" method="post">
+                            <input type="hidden" id="data" name="data" value="" />
+                            <button style="padding: 0px;" class="btn btn-default" onclick="saveimg()" type="button">Save image</button>
+                            </form>
+                            </li>
+                        <li id="clearimg"><button style="padding: 0px;" class="btn btn-default" onclick="clearimg()">Clear</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Tool</h3>
+                    <hr />
+                    <ul id="means">
+                        <li id="means_brush" onclick="drawBrush(0)">
+                            <img src="images/Brush.png" />
+                        </li>
+                        <li id="means_eraser" onclick="drawEraser(1)">
+                            <img src="images/Eraser.png" />
+                        </li>
+                        <li id="means_paint" onclick="drawPaint(2)">
+                            <img src="images/Paint.png" />
+                        </li>
+                        <li id="means_straw" onclick="drawStraw(3)">
+                            <img src="images/Straw.png" />
+                        </li>
+                        <li id="means_text" onclick="drawText(4)">
+                            <img src="images/text.png" />
+                        </li>
+                        <li id="means_magnifier" onclick="drawMagnifier(5)"><img src="images/Magnifier.png" /></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Shape</h3>
+                    <hr />
+                    <ul id="shape">
+                        <li id="shape_line" onclick="drawLine(6)">
+                            <img src="images/line.png" />
+                        </li>
+                        <li id="shape_arc" onclick="drawArc(7)">
+                            <img src="images/arc.png" />
+                        </li>
+                        <li id="shape_rect" onclick="drawRect(8)">
+                            <img src="images/rect.png" />
+                        </li>
+                        <li id="shape_poly" onclick="drawPoly(9)">
+                            <img src="images/poly.png" />
+                        </li>
+                        <li id="shape_arcfill" onclick="drawArcFill(10)">
+                            <img src="images/arcfill.png" />
+                        </li>
+                        <li id="shape_rectfill" onclick="drawRectFill(11)">
+                            <img src="images/rectfill.png" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Line</h3>
+                    <hr />
+                    <ul id="size">
+                        <li id="width_1" onclick="setLineWidth(0)">
+                            <img src="images/line1px.png" />
+                        </li>
+                        <li id="width_3" onclick="setLineWidth(1)">
+                            <img src="images/line3px.png" />
+                        </li>
+                        <li id="width_5" onclick="setLineWidth(2)">
+                            <img src="images/line5px.png" />
+                        </li>
+                        <li id="width_8" onclick="setLineWidth(3)">
+                            <img src="images/line8px.png" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Color</h3>
+                    <hr />
+                    <ul id="color">
+                        <li id="red" onclick="setColor(this,0)"></li>
+                        <li id="green" onclick="setColor(this,1)"></li>
+                        <li id="blue" onclick="setColor(this,2)"></li>
+                        <li id="yellow" onclick="setColor(this,3)"></li>
+                        <li id="white" onclick="setColor(this,4)"></li>
+                        <li id="black" onclick="setColor(this,5)"></li>
+                        <li id="pink" onclick="setColor(this,6)"></li>
+                        <li id="purple" onclick="setColor(this,7)"></li>
+                        <li id="cyan" onclick="setColor(this,8)"></li>
+                        <li id="orange" onclick="setColor(this,9)"></li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="paint">
+                <canvas id="canvas" width="850" height="450">
+                    Your browser does not support the canvas tag. Please upgrade your browser.
+                </canvas>
+            </div>
+        </section>
+
+
+        <div class="modal fade" id="insertIMGModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Insert Image
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="imgTab" class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#upload" data-toggle="tab">Upload an image</a>
+                            </li>
+                            <li>
+                                <a href="#url" data-toggle="tab">Paste image URL</a>
+                            </li>
+                            
+                        </ul>
+                        <div id="imgTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="upload">
+                                <div id = "file_alert_placeholder"></div>
+                                <br>
+                                <span class="btn btn-success fileinput-button">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>Select files...</span>
+                                    <input id="fileupload" type="file" name="files[]">
+                                </span>
+                                <br>
+                                <br>
+                                <div id="progress" class="progress">
+                                    <div class="progress-bar progress-bar-success"></div>
+                                </div>
+                                <div id="files" class="files" style="margin-top: -5px;margin-bottom: 15px;"></div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">X-coordinate</span>
+                                        <input type="text" id="file_x_input" class="form-control" value="0" placeholder="pixel">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Y-coordinate</span>
+                                        <input type="text" id="file_y_input" class="form-control" value="0" placeholder="pixel">
+                                    </div>
+                                <br>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" id="file_button" class="btn btn-primary">Insert</button>
+                            </div>
+                            <div class="tab-pane fade" id="url">
+                                <div id = "url_alert_placeholder"></div>
+                                <br>
+                                <div class="input-group">
+                                        <span class="input-group-addon">URL</span>
+                                        <input type="text" id="url_input" class="form-control">
+                                </div>
+                                
+                                <div class="input-group">
+                                        <span class="input-group-addon">X-coordinate</span>
+                                        <input type="text" id="url_x_input" class="form-control" value="0" placeholder="pixel">
+                                </div>
+                                <div class="input-group">
+                                        <span class="input-group-addon">Y-coordinate</span>
+                                        <input type="text" id="url_y_input" class="form-control" value="0" placeholder="pixel">
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" id="url_button" class="btn btn-primary">Insert</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        <script src="js/paint.js"></script>
+    </body>
+</html>
